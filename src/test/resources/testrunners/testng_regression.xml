@@ -20,4 +20,13 @@
 
 		</classes>
 	</test> <!-- Test -->
+	
+	<test name="CRMPRO contact Page Tests">
+		<classes>
+
+			<class name="com.qa.crmpro.tests.ContactPageTest" />
+
+		</classes>
+	</test> <!-- Test -->
+	
 </suite> <!-- Suite -->

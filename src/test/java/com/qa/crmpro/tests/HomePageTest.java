@@ -1,33 +1,19 @@
 package com.qa.crmpro.tests;
 
-import java.util.Properties;
-
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.qa.crmpro.base.BasePage;
+import com.qa.crmpro.base.BaseTest;
 import com.qa.crmpro.pages.HomePage;
-import com.qa.crmpro.pages.LoginPage;
 import com.qa.crmpro.utils.Constants;
 
-public class HomePageTest {
-	
-	BasePage basePage;
-	WebDriver driver;
-	LoginPage loginPage;
+public class HomePageTest extends BaseTest {
 	HomePage homePage;
-	Properties prop;
-	
-	@BeforeTest
-	public void setUp() {
-		basePage = new BasePage();
-		prop = basePage.init_prop(); //to load property file
-		driver= basePage.init_driver(prop);
-		loginPage = new LoginPage(driver);	
-		homePage = loginPage.doLogin("reshma4a1@gmail.com", "test@123");
+
+	@BeforeClass
+	public void homeSetup() {
+		homePage = loginPage.doLogin("reshma4a1@gmail.com", "test@123");	
 	}
 	
 	@Test
@@ -52,8 +38,4 @@ public class HomePageTest {
 		Assert.assertEquals(loggedInUser, "Reshma shaik");
 	}
 	
-	@AfterTest
-	public void tearDown() {
-		driver.quit();
-	}
 }

@@ -4,10 +4,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.qa.crmpro.base.BasePage;
+import com.qa.crmpro.utils.Constants;
+import com.qa.crmpro.utils.ElementUtils;
 
 public class LoginPage extends BasePage {
 	
 	private WebDriver driver;
+	private ElementUtils elementutil;
 	
 	//1.By locators 
 	
@@ -19,22 +22,25 @@ public class LoginPage extends BasePage {
 	
 	//2.create constructor of page class
 	public LoginPage(WebDriver driver) {
-	   this.driver = driver;	
+	   this.driver = driver;
+	   elementutil = new ElementUtils(driver);
 	}
 	
 	//3.Actions
 	public String getLoginPageTitle() {
-		return driver.getTitle();
+		return elementutil.waitForTitleToBePresent(Constants.LOGIN_PAGE_TITLE,10);
+
 	}
 	
 	public boolean verifySignUpLink() {
-		return driver.findElement(signUpLink).isDisplayed();
+		return elementutil.doIsDisplayed(signUpLink);
 	}
 	
 	public HomePage doLogin(String username,String password) {
-		driver.findElement(this.emailId).sendKeys(username);
-		driver.findElement(this.password).sendKeys(password);
-		driver.findElement(this.loginBtn).click();
+		//elementutil.waitForElementPresent(10, this.emailId);
+		elementutil.doSendKeys(this.emailId,username);
+		elementutil.doSendKeys(this.password,password);
+		elementutil.doClick(loginBtn);
 		return new HomePage(driver);
 	}
 }

@@ -8,12 +8,18 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ElementUtils {
+import com.qa.crmpro.base.BasePage;
+
+import jdk.internal.misc.FileSystemOption;
+
+public class ElementUtils extends BasePage {
 
 	WebDriver driver;
-
+	JavaScriptUtil jsutil;
+	
 	public ElementUtils(WebDriver driver) {
 		this.driver = driver;
+		jsutil = new JavaScriptUtil(this.driver);
 	}
 
 	public WebElement getElement(By locator) {
@@ -21,6 +27,11 @@ public class ElementUtils {
 		try {
 			System.out.println("locator is  : " + locator);
 			element = driver.findElement(locator);
+			//jsutil.flash(element);
+			if(prop.getProperty("highlight").equalsIgnoreCase("true"))
+					{
+			jsutil.flash(element);
+			}
 			System.out.println("Webelement created successfully");
 		} catch (Exception e) {
 			System.out.println("Exception occured for the locator : " + locator);

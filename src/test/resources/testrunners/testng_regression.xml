@@ -3,6 +3,13 @@
 
 <suite name="My crmpro Automation Suite" thread-count="2"
 	parallel="tests">
+	
+	<listeners>
+	
+	<listener class-name = "com.qa.crmpro.listeners.ExtentReportListener" />
+	</listeners>
+	
+	
 	<parameter name="url" value="http://crmpro.com/index.html" />
 	<parameter name="browser" value="firefox" />
 
@@ -13,20 +20,14 @@
 		</classes>
 	</test> <!-- Test -->
 
-	<test name="CRMPRO Home Page Tests">
+<!-- 	<test name="CRMPRO Home Page Tests">
 		<classes>
 
 			<class name="com.qa.crmpro.tests.HomePageTest" />
 
 		</classes>
-	</test> <!-- Test -->
+	</test> -->
 	
-	<test name="CRMPRO contact Page Tests">
-		<classes>
-
-			<class name="com.qa.crmpro.tests.ContactPageTest" />
-
-		</classes>
-	</test> <!-- Test -->
+	 <!-- Test -->
 	
 </suite> <!-- Suite -->
